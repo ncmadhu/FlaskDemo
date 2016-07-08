@@ -1,33 +1,41 @@
+#!/usr/bin/env python
+# Author: ncmadhu@gmail.com
+
 from flask import Flask
 from flask.ext.restful import Api
 
 app = Flask(__name__, static_url_path='')
 api = Api(app)
 
+
 def registerURLs():
     """
     Register version 1 URLS
     """
-    registerUrlv1(api)
+    registerUrlsV1(api)
     
     """
     Register version 2 URLS
     """
-    registerUrlv2(api)
+    registerUrlsV2(api)
     
     
-def registerUrlv1(api):
+def registerUrlsV1(api):
     """
     Registering Version 1 URLS
     """
-    pass
+    from restapis import actions_v1
     
+    actions_v1.registerUrls(api)
+
     
-def registerUrlv2(api):
+def registerUrlsV2(api):
     """
     Registering Version 2 URLS
     """
-    pass
+    from restapis import actions_v2
+    
+    actions_v2.registerUrls(api)
     
     
 def main():
