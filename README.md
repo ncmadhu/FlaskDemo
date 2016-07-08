@@ -1,2 +1,2 @@
-This Folder contains sample python programs for flask rest server.
+This Folder contains sample python programs for Flask rest server.
 
