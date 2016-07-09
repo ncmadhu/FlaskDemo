@@ -5,9 +5,11 @@ python:
 install:
   # Install pip dependencies
   - "pip install -r requirements.txt"
-  # start flask server
-  #- start_server.sh
 before_script:
   - ls $TRAVIS_BUILD_DIR
+  # change to build directory
+  - cd $TRAVIS_BUILD_DIR
+  # start flask server
+  - sh start_server.sh
 # command to run tests
 script: nosetests
