@@ -9,10 +9,15 @@ before_script:
   - ls /home/travis/virtualenv/python2.7/bin/
   - ls $TRAVIS_BUILD_DIR
   - export REPO_HOME=$TRAVIS_BUILD_DIR
-  - ls $REPO_HOME
   # change to build directory
   - cd $REPO_HOME
+  # copy supervisord to init.d directory
+  - sudo cp $REPO_HOME/scripts/suprevisord /etc/init.d/
+  - sudo chmod 755 /etc/init.d/suprevisord
+  - sudo chown root:root /etc/init.d/suprevisord
+  - sudo /etc/init.d/suprevisord start
   # start flask server
   #- sh start_server.sh
 # command to run tests
 script: nosetests
+sudo: required
