@@ -11,6 +11,8 @@ before_script:
   - export REPO_BIN=/home/travis/virtualenv/python2.7/bin
   # change to build directory
   - cd $REPO_HOME
+  - echo $REPO_HOME
+  - ls
   # copy supervisord to init.d directory
   - sudo cp scripts/supervisord /etc/init.d/
   - sudo chmod 755 /etc/init.d/supervisord
