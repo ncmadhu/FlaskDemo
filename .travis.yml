@@ -12,10 +12,10 @@ before_script:
   # change to build directory
   - cd $REPO_HOME
   # copy supervisord to init.d directory
-  - sudo cp $REPO_HOME/scripts/suprevisord /etc/init.d/
-  - sudo chmod 755 /etc/init.d/suprevisord
-  - sudo chown root:root /etc/init.d/suprevisord
-  - sudo /etc/init.d/suprevisord start
+  - sudo cp $REPO_HOME/scripts/supervisord /etc/init.d/
+  - sudo chmod 755 /etc/init.d/supervisord
+  - sudo chown root:root /etc/init.d/supervisord
+  - sudo /etc/init.d/supervisord start
   # start flask server
   #- sh start_server.sh
 # command to run tests
