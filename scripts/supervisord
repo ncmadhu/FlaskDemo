@@ -27,7 +27,7 @@ PIDFILE=$REPO_HOME/supervisord.pid
 OPTIONS="-c $REPO_HOME/conf/supervisord.conf"
 
 # unset this variable if you don't care to wait for child processes to shutdown before removing the $LOCKFILE-lock
-#WAIT_FOR_SUBPROCESSES=yes
+WAIT_FOR_SUBPROCESSES=yes
 
 # remove this if you manage number of open files in some other fashion
 ulimit -n 96000
@@ -85,7 +85,9 @@ stop() {
         echo "Stopping all managed services: "
         $SUPERVISORCTL $OPTIONS status
         $SUPERVISORCTL $OPTIONS stop all
-
+        pid=`cat $PIDFILE`
+        echo "Killing process $pid"
+        kill -9 $pid
         echo "Stopping supervisord: "
         $SUPERVISORCTL $OPTIONS shutdown
     if [ -n "$WAIT_FOR_SUBPROCESSES" ]; then 
