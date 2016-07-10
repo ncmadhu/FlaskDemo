@@ -7,16 +7,16 @@ install:
   - "pip install -r requirements.txt"
 before_script:
   - ls /home/travis/virtualenv/python2.7/bin/
-  - ls $TRAVIS_BUILD_DIR
   - export REPO_HOME=$TRAVIS_BUILD_DIR
   - export REPO_BIN=/home/travis/virtualenv/python2.7/bin
   # change to build directory
   - cd $REPO_HOME
   # copy supervisord to init.d directory
-  - sudo cp $REPO_HOME/scripts/supervisord /etc/init.d/
+  - sudo cp scripts/supervisord /etc/init.d/
   - sudo chmod 755 /etc/init.d/supervisord
   - sudo chown root:root /etc/init.d/supervisord
   - sudo /etc/init.d/supervisord start
+  - sudo /etc/init.d/supervisord status
   # start flask server
   #- sh start_server.sh
 # command to run tests

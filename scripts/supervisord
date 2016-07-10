@@ -7,8 +7,12 @@
 # description:  supervisor is a process control utility.
 #
 
-# source function library
-. /etc/rc.d/init.d/functions
+# source function library centos
+#. /etc/rc.d/init.d/functions
+
+# source function library ubuntu
+. /lib/lsb/init-functions
+
 
 set -a
 
@@ -78,8 +82,8 @@ start() {
 
 stop() {
         echo "Stopping all managed services: "
-$SUPERVISORCTL $OPTIONS status
-    $SUPERVISORCTL $OPTIONS stop all
+        $SUPERVISORCTL $OPTIONS status
+        $SUPERVISORCTL $OPTIONS stop all
 
         echo "Stopping supervisord: "
         $SUPERVISORCTL $OPTIONS shutdown
