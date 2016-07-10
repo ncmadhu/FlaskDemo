@@ -6,10 +6,13 @@ install:
   # Install pip dependencies
   - "pip install -r requirements.txt"
 before_script:
+  - ls /home/travis/virtualenv/python2.7/bin/
+  - ls $TRAVIS_BUILD_DIR
+  - export REPO_HOME=$TRAVIS_BUILD_DIR
   - ls $TRAVIS_BUILD_DIR
   # change to build directory
-  - cd $TRAVIS_BUILD_DIR
+  - cd $REPO_HOME
   # start flask server
-  - sh start_server.sh
+  #- sh start_server.sh
 # command to run tests
 script: nosetests
