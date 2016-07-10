@@ -22,12 +22,12 @@ SUPERVISORD=$PREFIX/supervisord
 SUPERVISORCTL=$PREFIX/supervisorctl
 
 PIDFILE=$REPO_HOME/supervisord.pid
-LOCKFILE=/var/lock/subsys/supervisord
+#LOCKFILE=/var/lock/subsys/supervisord
 
 OPTIONS="-c $REPO_HOME/conf/supervisord.conf"
 
 # unset this variable if you don't care to wait for child processes to shutdown before removing the $LOCKFILE-lock
-WAIT_FOR_SUBPROCESSES=yes
+#WAIT_FOR_SUBPROCESSES=yes
 
 # remove this if you manage number of open files in some other fashion
 ulimit -n 96000
@@ -70,7 +70,8 @@ start() {
         $SUPERVISORD $OPTIONS -j $PIDFILE
 
     # only create the subsyslock if we created the PIDFILE
-        [ -e $PIDFILE ] && touch $LOCKFILE
+    #[ -e $PIDFILE ] && touch $LOCKFILE
+        [ -e $PIDFILE ]
     
     # show initial startup status
     $SUPERVISORCTL $OPTIONS status
@@ -107,7 +108,7 @@ stop() {
         fi
 
         # always remove the subsys. We might have waited a while, but just remove it at this point.
-        rm -f $LOCKFILE
+        #rm -f $LOCKFILE
 }
 
 restart() {
