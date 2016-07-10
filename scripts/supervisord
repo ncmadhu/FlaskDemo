@@ -14,8 +14,8 @@ set -a
 
 PREFIX=$REPO_BIN
 
-SUPERVISORD=$PREFIX/bin/supervisord
-SUPERVISORCTL=$PREFIX/bin/supervisorctl
+SUPERVISORD=$PREFIX/supervisord
+SUPERVISORCTL=$PREFIX/supervisorctl
 
 PIDFILE=$REPO_HOME/supervisord.pid
 LOCKFILE=/var/lock/subsys/supervisord

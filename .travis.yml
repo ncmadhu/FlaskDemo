@@ -9,6 +9,7 @@ before_script:
   - ls /home/travis/virtualenv/python2.7/bin/
   - ls $TRAVIS_BUILD_DIR
   - export REPO_HOME=$TRAVIS_BUILD_DIR
+  - export REPO_BIN=/home/travis/virtualenv/python2.7/bin
   # change to build directory
   - cd $REPO_HOME
   # copy supervisord to init.d directory
