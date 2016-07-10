@@ -9,7 +9,7 @@ before_script:
   - ls /home/travis/virtualenv/python2.7/bin/
   - ls $TRAVIS_BUILD_DIR
   - export REPO_HOME=$TRAVIS_BUILD_DIR
-  - ls $TRAVIS_BUILD_DIR
+  - ls $REPO_HOME
   # change to build directory
   - cd $REPO_HOME
   # start flask server
