@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # Author: ncmadhu@gmail.com
 
-from restapis import Actions
+from restapis.actions import Actions
 from api import constants
 
 def registerUrls(api):

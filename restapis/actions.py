@@ -5,8 +5,8 @@
 import json
 import traceback
 from flask import abort, jsonify
-from restapis.implementation import *
-from flask.ext.restful import Resource, reqparse
+from implementation import *
+from flask_restful import Resource, reqparse
 
 
 class Actions(Resource):
@@ -14,17 +14,6 @@ class Actions(Resource):
 
     def __init__(self):
         
-        """
-        parse the json body using request parser
-        """
-        
-        self.reqparse = reqparse.RequestParser()
-        self.reqparse.add_argument('arg1', type=str, required=False,
-                                   help='Argument one of type string',
-                                   location='json')
-        self.reqparse.add_argument('arg2', type=List, required=False,
-                                   help='Argument two of type List',
-                                   location='json')
         super(Actions, self).__init__()
         
         
@@ -43,11 +32,11 @@ class Actions(Resource):
         if action in implemented_actions:
             try:
                 if action == 'getactionone':
-                    implementation.getactionone()
+                    response = getactionone()
                 elif action == 'getactiontwo':
-                    implementation.getactiontwo()
+                    response = getactiontwo()
                 elif action == 'getactionthree':
-                    implementation.getactionthree()
+                    response = getactionthree()
                 return jsonify(response)
             except:
                 abort(500)
@@ -56,9 +45,21 @@ class Actions(Resource):
             
             
     def post(self, action):
+            
+        """
+        parse the json body using request parser
+        """
+        
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument('arg1', type=str, required=False,
+                                   help='Argument one of type string',
+                                   location='json')
+        self.reqparse.add_argument('arg2', type=list, required=False,
+                                   help='Argument two of type List',
+                                   location='json')
     
         """
-        implementation for get
+        implementation for post 
         """
     
         implemented_actions = [
@@ -71,11 +72,11 @@ class Actions(Resource):
             try:
                 args = self.reqparse.parse_args()
                 if action == 'postactionone':
-                    implementation.postactionone(args['arg1'],args['arg2'])
+                    response = postactionone(args['arg1'],args['arg2'])
                 elif action == 'postactiontwo':
-                    implementation.postactiontwo(args['arg1'],args['arg2'])
+                    response = postactiontwo(args['arg1'],args['arg2'])
                 elif action == 'postactionthree':
-                    implementation.postactionthree(args['arg1'],args['arg2'])
+                    response = postactionthree(args['arg1'],args['arg2'])
                 return jsonify(response)
             except:
                 abort(500)
@@ -86,23 +87,23 @@ class Actions(Resource):
     def delete(self, action):
     
         """
-        implementation for get
+        implementation for delete 
         """
     
         implemented_actions = [
             'deleteactionone',
-            'deletectiontwo',
-            'deletectionthree'
+            'deleteactiontwo',
+            'deleteactionthree'
         ]
         
         if action in implemented_actions:
             try:
                 if action == 'deleteactionone':
-                    implementation.deleteactionone()
-                elif action == 'deletectiontwo':
-                    implementation.deletectiontwo()
-                elif action == 'deletectionthree':
-                    implementation.deletectionthree()
+                    response = deleteactionone()
+                elif action == 'deleteactiontwo':
+                    response = deleteactiontwo()
+                elif action == 'deleteactionthree':
+                    response = deleteactionthree()
                 return jsonify(response)
             except:
                 abort(500)
@@ -113,7 +114,19 @@ class Actions(Resource):
     def put(self, action):
     
         """
-        implementation for get
+        parse the json body using request parser
+        """
+        
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument('arg1', type=str, required=False,
+                                   help='Argument one of type string',
+                                   location='json')
+        self.reqparse.add_argument('arg2', type=list, required=False,
+                                   help='Argument two of type List',
+                                   location='json')
+    
+        """
+        implementation for put 
         """
     
         implemented_actions = [
@@ -126,11 +139,11 @@ class Actions(Resource):
             try:
                 args = self.reqparse.parse_args()
                 if action == 'putactionone':
-                    implementation.putactionone(args['arg1'],args['arg2'])
+                    response = putactionone(args['arg1'],args['arg2'])
                 elif action == 'putactiontwo':
-                    implementation.putactiontwo(args['arg1'],args['arg2'])
+                    response = putactiontwo(args['arg1'],args['arg2'])
                 elif action == 'putactionthree':
-                    implementation.putactionthree(args['arg1'],args['arg2'])
+                    response = putactionthree(args['arg1'],args['arg2'])
                 return jsonify(response)
             except:
                 abort(500)
